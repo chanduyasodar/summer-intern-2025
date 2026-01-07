@@ -1,0 +1,518 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage[export]{adjustbox}
+\usepackage{hyperref}
+\usepackage{gensymb}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{array}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{bibliography.bib}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{blindtext}
+\usepackage[a4paper, total={6in,9.5in}]{geometry}
+
+\begin{document}
+\input{title}
+\input{acknow}
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+\listoftables
+
+
+\input{abstract}
+\input{intro}
+
+
+
+. \chapter{Materials and Methods}
+\section{Strains and plasmids used}
+For amplification of plamsid, \textit{E.coli} DH5$\alpha$ strain was used whereas for protein expression, BL21(DE3) was used.\\
+Plasmid used is pET21a(+)\\
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{pics/pET-21a(+) Map.png}
+    \caption{Sequence Map of pET21a(+) \cite{map}}
+    \label{fig:enter-label}
+\end{figure}
+
+\tikzstyle{selectionmarker} = [rectangle, rounded corners, 
+minimum width=2cm, 
+minimum height=1cm,
+text width=2cm,
+text centered, 
+draw=black, 
+fill=red!30]
+
+\tikzstyle{io} = [trapezium, 
+trapezium stretches=true,
+trapezium left angle=70, 
+trapezium right angle=110,
+text width=2cm,
+minimum width=2cm, 
+minimum height=1cm, text centered, 
+draw=black, fill=blue!30]
+
+\tikzstyle{process} = [rectangle, 
+minimum width=2cm, 
+minimum height=1cm, 
+text centered, 
+text width=2cm, 
+draw=black, 
+fill=orange!30]
+
+\tikzstyle{decision} = [diamond, 
+minimum width=2cm, 
+minimum height=1cm, 
+text centered,
+text width=2cm,
+draw=black, 
+fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\begin{figure}
+    \centering
+    
+    
+\begin{tikzpicture}[node distance=2cm]
+
+\node (sm1) [selectionmarker] {Nde I};
+\node (in1) [io, right of=sm1, xshift=0.5cm] {6-Hisidine Tag};
+\node (pro1) [process, right of=in1, xshift=0.5cm] {Cytochrome
+
+b\textsubscript{5}};
+\node (dec1) [io, right of=pro1,xshift=0.5cm] {Thrombin
+
+Cleavage
+
+Site};
+
+\node (pro2a) [decision, right of=dec1, xshift=0.7cm] {Peptide
+
+Sequence};
+
+\node (pro2b) [selectionmarker, right of=pro2a, xshift=0.5cm] {EcoR I};
+
+
+
+\end{tikzpicture}
+\caption{Sequence cloned into the plasmid}
+    \label{fig:enter-label}
+\end{figure}
+
+
+\subsection{Rationale behind using Cytb\textsubscript{5} and 6-Histidine tag}
+Recombinant peptides in general, don't express in sufficient amounts in the host as they aren't expressed by the host naturally. They often pertain to express in low levels or forms insoluble inclusion bodies. So, in order to overcome this, the peptide of interest is expressed with a fusion tag. The peptide is attached to a host or parent protein, expressed as a single molecule and cleaved out later. Parent protein that is chosen is one that expresses well in bacterial cultures, highly soluble, stable, and easy to purify. One such parent protein is heme binding domain of rat cytochrome b\textsubscript{5}. It expresses in extremely high levels in common E. coli host expression strains and is very soluble, and thus satisfies all the criteria requisite of a good fusion protein host\cite{cytb5}.
+
+6-histidine tag is added for affinity chromatography and it's mechanism is explained further in 3.3.2 .
+
+
+\section{Expression}
+The text in \textit{italics} suggests that the respective step was done in a laminar hood under sterile conditions
+\subsection{Transformation}
+First, LB agar plates were prepared. LB Ag solution(25g LB, 17g agar per L of water) was autoclaved at 121 °C for 30 minutes.\textit{ Antibiotic (ampicillin in this case) was added, final concentration = 100 \textmu g/mL. Then,  media was poured into petri plates before the solution solidifies }, and the plates were stored in 44\degree C
+
+The method used here is \textbf{Heat Shock Method}\cite{heat_shock}. The competent cells and plasmid were taken out and kept on ice. \textit{In a 1 mL Eppendorf tube, to 100 \textmu L of the competent cells,  2 \textmu L of plasmid stock solution was added and was placed on ice for 10 minutes. Then, tube was placed in 42 \degree C for 90 seconds and back in ice for 5 minutes. 1 mL of  LB Media to the tube was added} and was incubated in 37\degree C and 180 rpm. The tube was centrifuged at 6000 rpm for 3 minutes. \textit{800 \textmu L of media was removed without disturbing the pellet, then, the pellet was resuspended in the remaining 200 \textmu L, which was spread plated in the LB agar plates.} The plates were incubated at 37\degree C for 12 hours or overnight. If the transformation was successful, we can observe opaque, white dots after incubation. After incubation, the transformed culture was stored at 4\degree °C. 
+
+\subsection{Cell Culture}
+For primary culture, regardless of the labelling of the peptide, LB media is used. 25 mL LB media was prepared in a 100 mL conical flask and autoclaved at 121\degree C for 30 minutes. \textit{Antibiotic was added(ampicillin,100 \textmu g/mL). Few transformed colonies were scraped using a pipette tip and the tip was dropped into the primary media} , then, incubated in 37\degree C for 12 hours or overnight. If precipitate is observed, it means that the media has dead cells.
+
+For secondary culture, if isotopic labelling is not going to be performed, then LB media can be used. 500 mL of LB media was prepared in a 2 L conical flask, and two such flasks were made, so a total of 1 L of LB media was made and autoclaved.\textit{Antibiotic was added(ampicillin,100 \textmu g/mL)}.
+
+\subsubsection{M9 Minimal media}
+This kind of media is prepared if we have to isotopically label the protein with $^{15}N$ or $^{13}C$ or both of thetwo wo 2   conical flasks, a 500mL Schott Duran bottle with 300 mL MillQ water, a 1 L Schott Duran bottle with 700 mL filtered water using a 0.2 \textmu filter paper, along with the filtering unit, were autoclaved. Measure the following compounds according to the isotope labelling done. If the protein is being $^{15}N$ labeled,$^{15}NH_4Cl$ will be used. If the protein is being $^{13}C$ labeled, $^{13}C_6H_{12}O_6$ shall be used. If the protein is to be double-labelled, both of the above compounds will be used.
+
+\begin{wraptable}{b}{6cm}
+
+\begin{tabularx}{6cm} { 
+  | >{\centering\arraybackslash}X  
+  | >{\centering\arraybackslash}X |}
+  \hline
+  $KH_2PO_4$ & 3g  \\ 
+  \hline
+  $Na_2HPO_4$ & 6g  \\ 
+  \hline
+  NaCl & 0.53 g \\ 
+  \hline
+  $NH_4Cl$ & 1 g  \\ 
+  \hline
+  Glucose &  2 g  \\ 
+  \hline
+  Thiamine & 1 mL  \\ 
+  \hline
+  Trace Elements &  10 \textmu L \\ 
+  \hline
+  100x Divalent cations & 10 mL  \\ 
+  \hline
+\end{tabularx}
+\caption{Composition of 1 L M9 Minimal Media}
+\label{table:ta1}
+\end{wraptable} 
+
+The compounds listed in table 3.1 were added to 300 mL of water, then \textit{it was filtered through the filtering unit attached to a Schott Duran bottle with 700 mL of water. Antibiotic (ampicillin, 100 \textmu g/mL) was added and mixed well. The medium was divided into two 2 L conical flasks} \\
+
+\textit{After the secondary media is ready, 1 mL of media was pipetted into an Eppendorf so that it can be used as a blank for measuring OD$_{600}$. 1\%\ of post incubation primary culture was added to the secondary media i.e, 5 mL of primary culture to to each flask} and was incubated in 37\degree C in 180 rpm until it reached an OD$_{600}$ of 0.4 or 0.6(3 to 4 hours). 
+
+Then, culture was induced with IPTG. \textit{Appropriate amount of IPTG was added such that its final concentration is 4 mM} and was incubated at 20\degree C for 16 hours. IPTG, isopropyl $\beta$-D-thiogalactopyranoside, is a molecular analogue of allolactose, which removes a repressor from the lac operon to induce gene expression\cite{iptg}. We can observe frothing in the culture. Same as  in the primary media, precipitation is not supposed to happen, if it is observed, it means that cells are dead. 
+
+Post induction and incubation, it was centrifuged at 5500 rpm, 4\degree C for 20 minutes of the second culture to pellet the cells. The supernatant was discarded and pellets were stored at -80\degree C until the next step is performed
+
+
+
+\section{Purification}
+
+\subsection{Cell Lysis}
+
+Cell lysis or cellular disruption is a method in which the outer boundary or cell membrane is broken down or destroyed in order to release intercellular materials such as DNA, RNA, protein or organelles from a cell. Cell lysis is an essential unit operation for molecular diagnostics of pathogens, immuno-assays for point of care diagnostics, down streaming processes such as protein purification for studying protein function and structure, cancer diagnostics, drug screening, mRNA transcriptome determination and analysis of the composition of specific proteins, lipids, and nucleic acids individually or as complexes.
+\begin{wrapfigure}{t}{0.7\linewidth}
+    \includegraphics[width=0.8\linewidth]{pics/cell_lysis.jpg}
+    \caption{Classification of different methods of cell lysis }
+    \label{fig:enter-label}
+\end{wrapfigure}
+
+Based on the application, cell lysis can be classified as complete or partial. Partial cell lysis is performed in techniques such as patch clamping, which is used for drug testing and studying intracellular ionic currents. Complete cell lysis is the full disintegration of cell membrane for analyzing DNA, RNA and subcellular components.\cite{cell_lysis}
+
+\subsubsection{French Press}
+\paragraph{Principle} French press comes under the mechanical method of cell lysis, specifically high pressure homogenizer. French press lyses the cell through disrupting it's plasma membrane and cell wall using the process of liquid homogenization where a external pump pushes a piston within a large cylinder containing the sample , forcing the sample through a minute hole. Thus the sample experiences a high shear force and decompression breaking the cell wall and plasma membrane.\\
+\begin{wraptable}{l}{6cm}
+\caption{Lysis Buffer}
+\begin{tabularx}{5.7cm}{ 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X
+  | }
+\hline
+ Tris & 50 mM  \\
+ \hline
+ NaCl  & 300 mM    \\
+\hline
+\multicolumn{2}{|c|}{pH=8, using HCl}    \\
+\hline
+\multicolumn{2}{|c|}{Filter with 0.45\textmu\ filter paper}  \\
+\hline
+\end{tabularx}
+\label{table:ta2}
+\end{wraptable}
+
+\paragraph{Procedure}Pellet was taken from the -80\degree C, thawed in ice and resuspended in 60 mL Lysis buffer. Serine protease inhibitor\cite{pmsf} was prepared by dissolving PMSF(phenylmethylsulfonyl fluoride) in ethanol(final concentration in the sample = 100 \textmu M). PMSF solution  has to be added frequently as it degrades within an hour. The French press apparatus was kept in ice for 15 to 20 minutes. Then, sample was loaded in the setup and processed in the machine. The cycle was repeated for 2-4 times depending on the outlet, if it's watery, then the cells have been lysed, else the process is repeated.
+
+\begin{figure}[H]
+
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width=0.9\linewidth, height=6cm]{pics/fp1.jpg} 
+\caption{Machine as a whole}
+\label{fig:subim1}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width=0.9\linewidth, height=6cm]{pics/fp2.jpg}
+\caption{Piston, needle valve, cylinder and the flow-through tube}
+\label{fig:subim2}
+\end{subfigure}
+
+\caption{French press}
+\label{fig:image2}
+\end{figure}
+
+Then, the flow-through was centrifuged at 12500 rpm, 45 minutes at 4\degree C. The cell debris is present in the pellet and the supernatant has the protein. 
+\subsection{Affinity Chromatography}
+  Property of target molecule's(mixed in mobile phase) specific binding with stationary phase i.e, a type of ligand is used to purify the molecule. A subcategory of affinity chromatography called \textbf{Immobilsed metal affinity chromatography} encompasses the property of affinity of amino acids like His or Cys to transition metal ions like Zn$^{2+}$, Cu$^{2+}$,Co$^{3+}$, Ni$^{2+}$ etc. A chelating ligand like NTA or IDA is used to fix the metal ion to agarose.\cite{niNTA,niNTA2}
+
+\subsubsection{Ni - NTA Column}\
+\paragraph{Principle}Histidine has a imidazole ring in it's side chain, and it has high affinity for the transition metal ion Ni$^{2+}$. The protein will have His in it's sequence but, for ensure strong and specific binding, a poly Histidine tag is added to the sequence to the protein we have to purify. This is done by modifying the genetic sequence artificially. In this case, the poly histidine tag has 6-histidines. Ni$^{2+}$ has a coordination number of 6, NTA occupies 4 of Ni$^{2+}$, 2 of the 6-histidine binds to the remaining coordination sites as shown in  figure 2.2\cite{h6tag}. The minimal concentration of imidazole in wash buffer removes non specifically bound molecules in the column. Then,  elution buffer is passed through the column and elution was collected as it contains the partially pure protein. Higher concentration of imidazole is used as eluting agent as imidazole competes with Histidine tag for binding.
+   
+
+    
+\begin{wrapfigure}{t}{0.5\textwidth}
+    \includegraphics[width=0.5\textwidth]{pics/niNTA.png}
+    \caption{Complex formed by poly-His tag, Ni$^{2+}$ and NTA \cite{niNTA_pic}}
+    \label{fig:enter-label}
+\end{wrapfigure} \\
+\begin{table}
+\centering   
+\begin{tabular}{cc}
+\begin{tabularx}{5.7cm}{ 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X  | }
+ \hline
+ Tris & 50 mM  \\
+ \hline
+ NaCl  & 300 mM    \\
+\hline
+ EDTA  & 20 mM    \\
+ \hline
+ \multicolumn{2}{|c|}{pH=8, using HCl}    \\
+ \hline
+ \multicolumn{2}{|c|}{Filter with 0.45\textmu\ filter paper}  \\
+ \hline
+ \end{tabularx}
+&
+ \begin{tabularx}{5.7cm}{ 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X  | }
+ \hline
+ Tris & 50 mM  \\
+ \hline
+ NaCl  & 300 mM    \\
+ \hline
+ EDTA  & 250 mM    \\
+ \hline
+\multicolumn{2}{|c|}{pH=8 , using HCl}  \\  
+\hline
+\multicolumn{2}{|c|}{Filter with 0.45\textmu\ filter paper}  \\
+\hline
+\end{tabularx}
+\label{table:ta5}
+\end{tabular}
+\caption{Wash and Elution buffer}
+    \label{tab:my_label}
+\end{table}\\
+
+
+
+
+\paragraph{Procedure}First, NTA-Agarose bed  was prepared. The column was then connected to the output tube of a  peristaltic pump. Before connecting the tubes of the pump to the column and buffer, the tubes were purged to remove air bubbles inside the tubes. Purging was done by immersing the input tube in a solvent and running the pump in a higher flow rate. During purge, output tube shouldn't be connected to the column. After purging, column was charged by passing 100 mM NiSO\textsubscript{4}.6H\textsubscript{2}O through the column by immersing the input tube in the respective solvent and connecting the output tube to the Ni-NTA column. Volume of each buffer passed was equivalent to 2/3 times the column volume and column volume is 20 mL. The flow rate is 1 mL/minute. The bed will turn light blue from white due to $Ni^{2+}$ ions. Next, the column was equilibrated with lysis buffer, as the pellet was suspended in lysis buffer before cell lysis. The post cell lysis supernatant is passed through the column and the flow-through is collected. Then, wash \& elution buffer were passed and their respective flow-through is collected. Ni-NTA column was washed by first removing the $Ni^{2+}$ from the coulmn, by passing 100 mM EDTA through the column. EDTA and NTA ligands competes to bind with $Ni^{2+}$ and as EDTA is a hexadendate ligand, it is more successful in binding. Then, MilliQ is passed . The wash is complete. The bed is kept intact by closing the bottom of the column making sure that the solvent is prsent in the column. We can use the same column again by repeating the cycle. To make sure that the affinity chromatography went well, the flow-through after running sample, wash flow-through and elution buffer would be injected in SDS PAGE. If there concentrated dark band for elution flow-through, then affinity chromatography is successful.
+
+\subsection{SDS - PAGE}\\
+\begin{table}[t]
+\begin{tabular}{cc}
+\begin{tabularx}{7cm}{ 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X  | }
+  \hline
+  \multicolumn{2}{|c|}{\textbf{Sealing Gel}}    \\
+\hline
+ Acrylamide & 500 \textmu L \\
+ \hline
+ APS(10\%)  & 10 \textmu L    \\
+ \hline
+ TEMED  & 2 \textmu L    \\
+ \hline
+\end{tabularx}&
+
+\begin{tabularx}{7cm}{ 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X  | }
+ \hline
+ \multicolumn{2}{|c|}{\textbf{TGS Buffer}}    \\
+\hline
+ Tris - Base & 3.04 g \\
+ \hline
+ SDS & 1 g \\
+ \hline
+ Glycine & 14.42 g    \\
+ \hline
+ Water & Make up the volume to 1 L \\
+ \hline
+ \multicolumn{2}{|c|}{pH = 8.3 using conc HCl}    \\
+\hline
+ \end{tabularx}\\
+
+\begin{tabularx}{7cm}{ 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X  | }
+ \hline
+ \multicolumn{2}{|c|}{\textbf{1X Staining Dye}}    \\
+\hline
+ Glycerol & 1 mL \\
+ \hline
+ Tris HCl(1M,pH=6.8) & 0.6 mL \\
+ \hline
+ SDS(10\%)  & 2 mL    \\
+ \hline
+ Water  & 5.1 mL    \\
+ \hline
+ $\beta$-marceptoethanol  & 0.5 mL    \\
+ \hline
+ \multicolumn{2}{|c|}{pinch of Bromophenol Blue}    \\
+\hline
+\end{tabularx}&
+
+ \begin{tabularx}{7cm}{ 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X  | }
+ \hline
+ \multicolumn{2}{|c|}{\textbf{Resolving Gel}}    \\
+\hline
+ Acrylamide & 1.875 mL \\
+ \hline
+ Water & 1.825 mL \\
+ \hline
+ Tris HCl (1.5M,pH=8.8) & 0.975 mL \\
+ \hline
+ SDS(10\%)  & 37.5 \textmu L    \\
+ \hline
+ APS(10\%)  & 37.5 \textmu L    \\
+ \hline
+ TEMED  & 1.5 \textmu L    \\
+ \hline
+\end{tabularx}\\
+
+
+\begin{tabularx}{7cm}{ 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X  | }
+ \hline
+ \multicolumn{2}{|c|}{\textbf{Stainer(100 mL)}}    \\
+\hline
+ Coomassie Brilliant Blue & 0.25 g \\
+ \hline
+ Water & 45 mL \\
+ \hline
+ Methanol & 45 mL \\
+ \hline
+ Glacial acetic acid  & 10 \textmu L    \\
+ \hline
+ \end{tabularx}&
+
+
+ \begin{tabularx}{7cm}{ 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X  | }
+ \hline
+ \multicolumn{2}{|c|}{\textbf{Stacking Gel}}    \\
+\hline
+ Acrylamide & 247.5 \textmu L \\
+ \hline
+ Water & 1.05 mL \\
+ \hline
+ Tris HCl (1M,pH=6.8) & 187.5 \textmu L \\
+ \hline
+ SDS(10\%)  & 15 \textmu L    \\
+ \hline
+ APS(10\%)  & 15 \textmu L    \\
+ \hline
+ TEMED  & 1.5 \textmu L    \\
+ \hline
+\end{tabularx}
+\label{table:ta8}\\
+
+
+\begin{tabularx}{7cm}{ 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X  | }
+ \hline
+ \multicolumn{2}{|c|}{\textbf{De-Stainer(100 mL)}}    \\
+\hline
+ Water & 45 mL \\
+ \hline
+ Methanol & 45 mL \\
+ \hline
+ Glacial acetic acid  & 10 \textmu L    \\
+ \hline
+ \end{tabularx}\\
+ \end{tabular}
+\caption{\textbf{SDS PAGE Recipe}}
+\label{tab:my_label}
+\end{table}\\
+
+Sodium Dodecyl Sulphate - Polyacrylamide Gel Electrophoresis is a protein separation method by mass. First, SDS PAGE apparatus is setup and sealing gel was made to seal the bottom part. 10\% resolving gel and stacking gel were prepared. Sample's tertiary structure is degraded by addition of 10\textmu L of Staining dye to 10 \textmu L sample(flow-through, wash and elution), heated in boiling water for 10 mins, centrifuged at 6000 rpm for 3 minutes. 15 \textmu L was loaded into each of well, apparatus was immersed in 1X TGS Buffer and run at 120 V until the stainer in the sample reaches the end of the gel. Then, gel was taken out from the apparatus, immersed in stainer for 2 - 3 hours, rinsed with water and was immersed in de-stainer for 1 hour.
+
+
+
+
+
+\subsection{Dialysis}\\
+
+This method is based on diffusion due to solvent concentration difference. The concentration of imidazole had to be eliminated as much as possible as it acts as an inhibitor against thrombin. This was done by pooling the eluted solution in SnakeSkin Dialysis Tubing, and placing the bag in the dialysis solution. The buffer is replaced for every 4 - 6 hours, and this is done for 4 hours, so approximately 24 hours of dialysis. Now, the sample is ready for thrombin cleavage.
+
+\subsection{Thrombin Cleavage}
+
+\begin{wraptable}{H}{5cm}
+
+\begin{tabularx}{5cm}{ 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X  | }
+  \hline
+ Tris & 50 mM  \\
+ \hline
+ NaCl  & 200 mM    \\
+\hline
+\multicolumn{2}{|c|}{pH=7, using HCl}    \\
+\hline
+\end{tabularx}
+\caption{Dialysis buffer}
+\label{table:ta5}
+\end{wraptable} 
+ The expressed fusion protein has thrombin cleavage site [ L V P R \big\downarrow\ G S ]right after the sequence of cytochrome sequence in order to cleave out the peptide of interest from the his tag and cytochrome. 5 mM of CaCl$_2.$2H$_2$O was added to the elution and the thrombin reaction was carried out in the ratio of protein:Thrombin = 1:25 at 20\degree C for 16 hours.\cite{Thrombin}
+ 
+
+\subsection{Size Exclusion Chromatography}
+\begin{wraptable}{H}{6cm}
+
+\begin{tabularx}{5.7cm}{ 
+  | >{\centering\arraybackslash}X 
+  | >{\centering\arraybackslash}X  | }
+\hline
+ Tris & 50 mM  \\
+ \hline
+ NaCl  & 200 mM    \\
+\hline
+Sodium azide & 0.01\%    \\
+\hline
+\multicolumn{2}{|c|}{pH=7, using HCl} \\  
+\hline
+\multicolumn{2}{|c|}{Filter with 0.2 \textmu\ filter paper}    \\
+\hline
+\end{tabularx}
+\caption{SEC Buffer}
+\label{table:ta5}
+
+\end{wraptable}
+
+ \paragraph{Principle}
+ The compound is segregated according to its size/Stokes' radius/hydrodynamic volume. The stationary phase is made of inherently hydrophobic, chemically and physically inert polystyrene/divinylbenzene copolymers so that they do not interfere with the analyte. Counterintuitively, the bigger molecules elute out first and the smaller ones elute later. The column has "hollow beads" through which small molecules can pass, but the bigger molecules can't. The travel path for bigger molecules is shorter than that of smaller molecules. So, smaller the molecules, later they elute. The elution is passed through a detector which gives absorption spectra at different wavelengths. Different spectral peaks correspond to different peptides. The fraction corresponding to the spectral peak has our peptide of interest. Separation parameters depend on the SEC column used.
+ \paragraph{Procedure}
+Seperation of peptide from impurities(importantly Cytb\textsubscript{5} and His tag) was achieved using Superdex-30 column. The column was equilibriated with 1 column volume of SEC Buffer. 2 mL of sample was injected in the column and elution was collected in 2ml fraction at flow rate of 1 mL/min.
+
+ \subsection{Concentrating using Amicon}
+\paragraph{Principle} Amicon centrifugal tubes have a molecular weight cutoff filter separating the tube into 2 parts. The sample is loaded in the top part and centrifuged. The filter retains all the compounds which is higher than the molecular weight cutoff and rest is enters the bottom part as centrifuge.
+
+\paragraph{Procedure}
+The SEC fraction corresponding to the peptide peak was loaded into Amicon Ultra Centrifugal Filter 3 kDa MWCO and centrifuged in 3500 rpm, 4 \degree C for 30 minutes. The steps were repeated until the whole of SEC fractions were over and until concentrated sample was obtained
+
+ \subsection{Reverse Phase HPLC}
+ \paragraph{Principle}The purest form of the peptide is obtained through this step. This is done by passing the sample through a column whose matrix(stationary phase) and mobile phase(solvent+sample) interacts eith the sample eluting different compounds at different times due to the strength of interaction. Contrary to normal HPLC, stationary phase is more nonpolar than the eluting solvent in reverse phase HPLC. Main components are nonpolar stationary phase, e.g., C \textsubscript{18} silica  and a moderately polar aqueous mobile phase. One common RP-HPLC stationary phase is surface-modiﬁed silica, RM\textsubscript{2}SiCl, where R is a straight chain alkyl group such as C\textsubscript{8}H\textsubscript{17} or C\textsubscript{18}H\textsubscript{37}. The peptides bind to the stationary matrix through hydrophobic interactions and gets eluted due to the interaction with mobile phase. Types of flow of mobile phase are isocratic and gradient flow based on the concentration of solvents throughout the run. So, elution occurs when the hydrophobic interaction between peptide and stationary phase is weaker than interaction between mobile phase and peptide due specific composition of solvents at that particular time. Thus, different peptides elute out at different times according to the strength of the hydrophobic retention. The elution is passed through a UV/Vis detector , which gives a spectra. Each peak in the HPLC chromatogram correspond to a certain peptide and is collected. The peak that appears in the very start corresponds to the molecules which didn't bind to the column, and is termed as the void peak.
+
+ \paragraph{Procedure}
+ The concentrated sample was run in Agilent 1200 HPLC machine. 100 \textmu L of sample was injected into LiChroCART 18e,300\r{A},5\textmu\   column, with (H\textsubscript{2}O+0.1\% TFA) and (ACN+0.1\%TFA) as solvents applied as 35 minutes linear gradient and detected at 280 nm. Sample which eluted during appearance of distinct were collected and analysed using MALDI Mass spectrometry to verify the efficiency of expression and purification.\\
+
+\begin{figure}[b]
+    \centering
+    \includegraphics[width=\textwidth]{pics/hplc.jpg}
+    \caption{Basic workflow of HPLC}
+    \label{fig:enter-label}
+\end{figure}
+ 
+
+
+
+ \subsection{Lyophilisation}
+ Also known as freeze drying, lyophilisation is used to isolate the peptide from volatile compounds(in this case, HPLC solvents) by sublimation. This is done by first cooling down the elution, results in formation of ice crystals. Now, the pressure is decreased and temperature is increased slowly. As volume and pressure are indirectly proportional, the ice tends to expand and the volatile substances like the HPLC solvents sublimate. The vapour is collected and condensed. This is done in 3 steps 
+ 
+  Pre Freezing - Sample cooled to temperatures below it's freezing point, forming homogenous ice crysals
+  
+Primary Drying - Temperature is increased slowly, a considerable amount of volatile substance is sublimated
+
+Secondary Drying - Pressure is decreased and temperature is increased, sublimating the volatile compounds completely
+
+The cycle is repeated for a few times. The sample which was suspended in solvents comes out as powder after lypohylisation.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{pics/lyoph.jpg}
+    \caption{Lyophiliser machine}
+    \label{fig:enter-label}
+\end{figure}
+
+\input{result}
+\input{conclusion}
+
+\printbibliography[heading=bibintoc, title={Bibliography}]
+\end{document}
